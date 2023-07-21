@@ -1,8 +1,9 @@
+from datetime import date
+from django.db import models
 from django.db.models.signals import pre_save
 from django.db import IntegrityError
 from django.dispatch import receiver
-from django.db import models
-from datetime import date
+from django.db.models import UniqueConstraint
 
 
 class Lote(models.Model):
@@ -37,7 +38,7 @@ class Stock(models.Model):
     has_quiebre = models.BooleanField(default=False)
 
     class Meta:
-        unique_together = ["institucion", "medicamento"]
+        constraints = [UniqueConstraint(fields=['institucion', 'medicamento'], name='unique_institucion_medicamento')]
 
 
 @receiver(pre_save, sender=Stock)
