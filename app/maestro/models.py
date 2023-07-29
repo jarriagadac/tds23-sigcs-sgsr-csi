@@ -100,7 +100,7 @@ class Equipamiento(models.Model):
     modelo = models.CharField(max_length=255)
 
     def __str__(self) -> str:
-        return f"{self.modelo} ({self.modelo}) | {self.item}"
+        return f"{self.marca} ({self.modelo}) | {self.item}"
 
 
 class Quiebre(models.Model):
