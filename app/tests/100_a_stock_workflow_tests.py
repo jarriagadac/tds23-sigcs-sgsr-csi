@@ -24,6 +24,7 @@ def test_workflow_calculo_stock():
     Movimiento.objects.create(institucion=institucion, lote=lote1)
     Movimiento.objects.create(institucion=institucion, lote=lote2)
     stock = Stock.objects.filter(institucion=institucion, medicamento=medicamento).first()
+   
     assert stock.cantidad == 15000, "cada movimiento debe actualizar (aumentar) la cantidad del stock"
 
     Consumo.objects.create(institucion=institucion, medicamento=medicamento, cantidad=10000)
