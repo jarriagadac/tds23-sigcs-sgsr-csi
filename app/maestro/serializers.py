@@ -1,25 +1,20 @@
 from rest_framework import serializers
 
 
-from .models import Institucion, Medicamento
+from .models import Institucion, Medicamento, Equipamiento, Quiebre, Item
 
 
 class InstitucionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Institucion
-        fields = [
-            "nombre",
-            "tipo",
-            "titularidad",
-            "num_camas_uti",
-            "num_camas_uci",
-        ]
+        fields = ["id", "nombre", "tipo", "titularidad", "num_camas_uti", "num_camas_uci", "factor"]
 
 
 class MedicamentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medicamento
         fields = [
+            "id",
             "nombre_comercial",
             "nombre_generico",
             "ingredientes",
@@ -37,13 +32,24 @@ class MedicamentoSerializer(serializers.ModelSerializer):
         ]
 
 
-class ItemSerializer:
-    pass
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = ["id", "nombre", "tipo"]
 
 
-class EquipamientoSerializer:
-    pass
+class EquipamientoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Equipamiento
+        fields = ["id", "item", "marca", "modelo"]
 
 
-class QuiebreSerializer:
-    pass
+class QuiebreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quiebre
+        fields = [
+            "id",
+            "institucion",
+            "medicamento",
+            "cantidad",
+        ]
