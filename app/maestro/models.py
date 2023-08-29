@@ -108,5 +108,12 @@ class Quiebre(models.Model):
     medicamento = models.ForeignKey(Medicamento, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField(default=500)
 
+    def __str__(self) -> str:
+        print(f"institucion: {self.institucion.id} - medicamento:{self.medicamento.id} - cantidad: {self.cantidad}")
+        
     class Meta:
-        unique_together = [("institucion", "medicamento")]
+        constraints = [
+            models.UniqueConstraint(fields=["institucion", "medicamento"], name="Llaves compuestas")
+        ]
+        # Deprecated
+        # unique_together = [("institucion", "medicamento")]

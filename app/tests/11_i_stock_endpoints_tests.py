@@ -30,6 +30,8 @@ def test_list_movimientos(client):
         content_type="application/json",
     )
     response = client.get("/stock/movimientos", content_type="application/json")
+    print("test nebur")
+    print(response)
     assert response.status_code == 200, "endpoint no encontrado"
     assert len(response.data) == 2, "se agregó más de un movimiento en la base de datos"
 

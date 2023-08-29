@@ -29,7 +29,10 @@ def test_movimientos_medicamento(client):
     assert response.status_code == 200, "endpoint no encontrado"
     assert len(response.data) == 1, "se obtuvieron más resultados de los esperados"
 
-    data = {"medicamento": 5, "movimientos": [{"lote": 20, "institucion": 1, "fecha": date(2023, 7, 28)}]}
+    #data = {"medicamento": 5, "movimientos": [{"lote": 20, "institucion": 1, "fecha": date(2023, 7, 28)}]}
+    # por alguna extrania razon el orden sale distinto en nuestro proyecto
+    data = {'medicamento': 5, 'movimientos': [{'fecha': date(2023, 7, 28), 'institucion': 1, 'lote': 20}]}
+    
     assert list(response.data)[0] == data, f"data no tiene los datos esperados ({data})"
 
 
